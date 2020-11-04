@@ -33,3 +33,21 @@ exports.getAllBrand = async (req, res) => {
     }
 }
 
+//Get Search Brand Data
+exports.getSearch = async (req, res) => {
+    try {
+        const data = req.body.search
+        if (!data) {
+            return res.send('Send search data first!')
+        }
+        const brandData = await Brand.find({
+            $or: [
+                { brandName: { $regex: new RegExp(data, 'i') } },
+                { branchName: { $regex: new RegExp(data, 'i') } },
+            ],
+        }).select('_id brandName branchName location latitude longitude')
+        return res.send({ brandData })
+    } catch (error) {
+        console.log(error)
+    }
+}
