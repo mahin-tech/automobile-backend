@@ -23,7 +23,7 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage: storage })
 
-const { createBrand, getAllBrand, getSearch } = require("../controllers/brand")
+const { createBrand, getAllBrand, getSearch, getTestData } = require("../controllers/brand")
 
 //Create Brand Route
 router.post("/create/brand", upload.single('branchLogo'), createBrand)
@@ -31,5 +31,6 @@ router.post("/create/brand", upload.single('branchLogo'), createBrand)
 //Get Brand Data
 router.get('/brand', getAllBrand)
 router.get('/search', getSearch)
+router.get('/test', getTestData)
 
 module.exports = router

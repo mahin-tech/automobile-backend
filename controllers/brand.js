@@ -52,3 +52,13 @@ exports.getSearch = async (req, res) => {
         console.log(error)
     }
 }
+
+
+//Test Data
+exports.getTestData = (req, res) => {
+    try {
+        return res.send('hello')
+    } catch (error) {
+
+    }
+}
