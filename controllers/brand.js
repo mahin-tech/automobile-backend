@@ -4,6 +4,7 @@ const Brand = require('../models/brand')
 exports.createBrand = async (req, res) => {
     try {
         const brand = await new Brand(req.body)
+        brand.branchLogo = req.file.filename
         brand.save((err, brand) => {
             if (err) {
                 return res.status(400).json({
