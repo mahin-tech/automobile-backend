@@ -46,7 +46,7 @@ exports.getSearch = async (req, res) => {
                 { brandName: { $regex: new RegExp(data, 'i') } },
                 { branchName: { $regex: new RegExp(data, 'i') } },
             ],
-        }).select('_id brandName branchName location latitude longitude')
+        }).select('_id brandName branchName location locationLink contact latitude longitude')
         return res.send({ brandData })
     } catch (error) {
         console.log(error)

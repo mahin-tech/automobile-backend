@@ -17,11 +17,11 @@ const brandSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    latitude: {
+    locationLink: {
         type: String,
         default: null
     },
-    longitude: {
+    contact: {
         type: String,
         default: null
     }
