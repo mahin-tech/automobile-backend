@@ -37,7 +37,7 @@ exports.getAllBrand = async (req, res) => {
 //Get Search Brand Data
 exports.getSearch = async (req, res) => {
     try {
-        const data = req.body.search
+        const data = req.params.search
         if (!data) {
             return res.send('Send search data first!')
         }
@@ -46,7 +46,7 @@ exports.getSearch = async (req, res) => {
                 { brandName: { $regex: new RegExp(data, 'i') } },
                 { branchName: { $regex: new RegExp(data, 'i') } },
             ],
-        }).select('_id brandName branchName location locationLink contact latitude longitude')
+        }).select('_id brandName branchName location locationLink contact')
         return res.send({ brandData })
     } catch (error) {
         console.log(error)

@@ -30,7 +30,7 @@ router.post("/create/brand", upload.single('branchLogo'), createBrand)
 
 //Get Brand Data
 router.get('/brand', getAllBrand)
-router.get('/search', getSearch)
+router.get('/search/:search', getSearch)
 router.get('/test', getTestData)
 
 module.exports = router
