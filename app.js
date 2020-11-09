@@ -11,6 +11,7 @@ const path = require('path')
 
 //My Routes
 const brandRoutes = require('./routes/brand')
+const locationRoutes = require('./routes/location')
 
 //DB Connection
 mongoose.connect(process.env.DATABASE, {
@@ -31,6 +32,7 @@ app.use('/upload', express.static(path.join(__dirname, 'public/upload')))
 
 //Routes
 app.use("/api", brandRoutes)
+app.use("/api", locationRoutes)
 
 //PORT
 const port = process.env.PORT || 8000
