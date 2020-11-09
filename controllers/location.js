@@ -1,4 +1,5 @@
 const Location = require("../models/location");
+const { responseHandler } = require('../config/ResponseHandler')
 
 //Store Location data
 exports.createLocation = async (req, res) => {
@@ -6,11 +7,9 @@ exports.createLocation = async (req, res) => {
         const location = await new Location(req.body);
         location.save((err, location) => {
             if (err) {
-                return res.status(400).json({
-                    error: "location not able to save",
-                });
+                return errorHandle(404, 'Location not able to save', res)
             }
-            return res.json(location);
+            return res.send(responseHandler({ location }));
         });
     } catch (error) {
         console.log(error);
@@ -37,11 +36,9 @@ exports.getAllLocation = async (req, res) => {
             .populate("brandId")
             .exec((err, location) => {
                 if (err) {
-                    return res.status(400).json({
-                        error: "No location Found",
-                    });
+                    return errorHandle(404, 'Location not found!', res)
                 }
-                return res.json(location);
+                return res.send(responseHandler({ location }));
             });
     } catch (error) {
         console.log(error);

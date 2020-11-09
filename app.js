@@ -8,6 +8,7 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const cors = require("cors")
 const path = require('path')
+const { handleError } = require('./config/ErrorHandler')
 
 //My Routes
 const brandRoutes = require('./routes/brand')
@@ -29,6 +30,11 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 app.use(cookieParser())
 app.use(cors())
 app.use('/upload', express.static(path.join(__dirname, 'public/upload')))
+
+//Handle Error
+app.use((err, req, res, next) => {
+    handleError(err, res)
+})
 
 //Routes
 app.use("/api", brandRoutes)

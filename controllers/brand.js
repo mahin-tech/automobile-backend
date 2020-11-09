@@ -1,4 +1,5 @@
 const Brand = require('../models/brand')
+const { responseHandler } = require('../config/ResponseHandler')
 
 //Store Brand Data In Brand Collection
 exports.createBrand = async (req, res) => {
@@ -7,11 +8,9 @@ exports.createBrand = async (req, res) => {
         brand.branchLogo = req.file.filename
         brand.save((err, brand) => {
             if (err) {
-                return res.status(400).json({
-                    error: "Brand not able to save"
-                })
+                return errorHandle(404, 'Brand not able to save', res)
             }
-            return res.json({ brand })
+            return res.send(responseHandler({ brand }))
         })
     } catch (error) {
         console.log(error)
@@ -23,11 +22,9 @@ exports.getAllBrand = async (req, res) => {
     try {
         await Brand.find().exec((err, brand) => {
             if (err) {
-                return res.status(400).json({
-                    error: "No Brand Found"
-                })
+                return errorHandle(404, 'Brand not found!', res)
             }
-            return res.json(brand)
+            return res.send(responseHandler({ brand }))
         })
     } catch (error) {
         console.log(error)
@@ -39,7 +36,7 @@ exports.getSearch = async (req, res) => {
     try {
         const data = req.params.search
         if (!data) {
-            return res.send('Send search data first!')
+            return res.send(responseHandler(null, true, 'Send search data first!'))
         }
         const brandData = await Brand.find({
             $or: [
@@ -47,18 +44,8 @@ exports.getSearch = async (req, res) => {
                 { branchName: { $regex: new RegExp(data, 'i') } },
             ],
         }).select('_id brandName branchName branchLogo location locationLink contact')
-        return res.send({ brandData })
+        return res.send(responseHandler({ brandData }))
     } catch (error) {
         console.log(error)
-    }
-}
-
-
-//Test Data
-exports.getTestData = (req, res) => {
-    try {
-        return res.send('hello')
-    } catch (error) {
-
     }
 }
