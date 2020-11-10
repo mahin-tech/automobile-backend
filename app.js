@@ -13,6 +13,8 @@ const { handleError } = require('./config/ErrorHandler')
 //My Routes
 const brandRoutes = require('./routes/brand')
 const locationRoutes = require('./routes/location')
+const productRoutes = require('./routes/product')
+const packageRoutes = require('./routes/package')
 
 //DB Connection
 mongoose.connect(process.env.DATABASE, {
@@ -39,6 +41,8 @@ app.use((err, req, res, next) => {
 //Routes
 app.use("/api", brandRoutes)
 app.use("/api", locationRoutes)
+app.use("/api", productRoutes)
+app.use("/api", packageRoutes)
 
 //PORT
 const port = process.env.PORT || 8000
