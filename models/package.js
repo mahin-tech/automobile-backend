@@ -5,10 +5,6 @@ const packageSchema = new mongoose.Schema({
         type: String,
         default: null
     },
-    productId: {
-        type: String,
-        default: null
-    },
     image: {
         type: String,
         default: null

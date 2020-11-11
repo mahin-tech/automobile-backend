@@ -19,7 +19,7 @@ exports.createProduct = async (req, res) => {
 //Get All Product Data
 exports.getAllProduct = async (req, res) => {
     try {
-        await Product.find().exec((err, product) => {
+        await Product.find().populate("packageId brandId").exec((err, product) => {
             if (err) {
                 return errorHandle(404, 'Product not found!', res)
             }
