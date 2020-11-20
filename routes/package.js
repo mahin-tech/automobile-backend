@@ -23,12 +23,16 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage: storage })
 
-const { createPackage, getAllPackage } = require("../controllers/package")
+const { createPackage, getAllPackage, getPackageById, getPackage } = require("../controllers/package")
+
+//Parameters of Package
+router.param('packageId', getPackageById)
 
 //Create Package Route
 router.post("/create/package", upload.single('image'), createPackage)
 
 //Get Package Data
-router.get('/package', getAllPackage)
+router.get('/get/package/:packageId', getPackage)
+router.get('/package/:id', getAllPackage)
 
 module.exports = router

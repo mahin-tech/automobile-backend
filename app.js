@@ -15,6 +15,7 @@ const brandRoutes = require('./routes/brand')
 const locationRoutes = require('./routes/location')
 const productRoutes = require('./routes/product')
 const packageRoutes = require('./routes/package')
+const extraItemROutes = require('./routes/extraItem')
 
 //DB Connection
 mongoose.connect(process.env.DATABASE, {
@@ -43,6 +44,7 @@ app.use("/api", brandRoutes)
 app.use("/api", locationRoutes)
 app.use("/api", productRoutes)
 app.use("/api", packageRoutes)
+app.use("/api", extraItemROutes)
 
 //PORT
 const port = process.env.PORT || 8000
