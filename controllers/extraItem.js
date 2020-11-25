@@ -1,5 +1,4 @@
 const Item = require('../models/extraItem')
-const { responseHandler } = require('../config/ResponseHandler')
 
 // Store Item Data in Database
 exports.createItem = async (req, res) => {
@@ -7,9 +6,11 @@ exports.createItem = async (req, res) => {
         const item = await new Item(req.body)
         item.save((err, item) => {
             if (err) {
-                return errorHandle(404, 'Item not able to save', res)
+                return res.status(400).json({
+                    error: "Item not able to save"
+                })
             }
-            return res.send(responseHandler({ item }))
+            return res.json({ item })
         })
     } catch (error) {
         console.log(error)
@@ -21,9 +22,11 @@ exports.getAllItem = async (req, res) => {
     try {
         await Item.find().exec((err, item) => {
             if (err) {
-                return errorHandle(404, 'Item not found', res)
+                return res.status(400).json({
+                    error: "Item data not found"
+                })
             }
-            return res.send(responseHandler({ item }))
+            return res.json({ item })
         })
     } catch (error) {
         console.log(error)
