@@ -31,7 +31,7 @@ router.param('packageId', getPackageById)
 //Create Package Route
 router.post("/create/package", upload.single('image'), createPackage)
 
-//Get Package Data
+//Get Package Route
 router.get('/get/package/:packageId', getPackage)
 router.get('/package/:id', getAllPackage)
 

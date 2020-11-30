@@ -28,7 +28,7 @@ const { createBrand, getAllBrand, getSearch } = require("../controllers/brand")
 //Create Brand Route
 router.post("/create/brand", upload.single('branchLogo'), createBrand)
 
-//Get Brand Data
+//Get Brand Route
 router.get('/brand', getAllBrand)
 router.get('/search/:search', getSearch)
 

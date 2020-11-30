@@ -9,16 +9,16 @@ router.param("productId", getProductById)
 //Create Product Route
 router.post("/create/product", createProduct)
 
-//Update Increment Product
+//Update Increment Product Route
 router.put("/edit/inc/product/:productId", updateIncProduct);
 
-//Update Decrement Product
+//Update Decrement Product Route
 router.put("/edit/dec/product/:productId", updateDecProduct);
 
 //Read Product Route
 router.get("/get/product/:productId", getProduct);
 
-//Get Product Data
+//Get Product Route
 router.get('/product', getAllProduct)
 
 module.exports = router

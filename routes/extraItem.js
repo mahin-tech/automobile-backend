@@ -3,10 +3,10 @@ const router = express.Router();
 
 const { createItem, getAllItem } = require("../controllers/extraItem");
 
-//Create Location Route
+//Create Item Route
 router.post("/create/item", createItem);
 
-//Get Location Route
+//Get Item Route
 router.get("/item", getAllItem);
 
 module.exports = router;
